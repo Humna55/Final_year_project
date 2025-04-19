@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Classroom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #023047;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: royalblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightblue;
+        }
+
+        #error {
+            color: #ff0000;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        /* Style for course inputs */
+        #coursesInputs div {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+<nav class=" navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"  data-bs-theme="dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand" href="#">School Development System</a>
+
+
+
+<div class="mr-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+
+
+    <h1>Add Classroom</h1>
+    <form action="/addClassrooms" method="POST" onsubmit="return validateForm()">
+        <label>Classroom ID:</label>
+        <input type="text" name="classroom_id" required><br>
+        <label>Teacher ID:</label>
+        <input type="text" name="teacher_id" required><br>
+        <label>No Of Courses:</label>
+        <input type="number" name="count_courses" id="count_courses" required><br>
+
+        <div id="coursesInputs"></div>
+
+        <label>Section:</label>
+        <input type="text" name="section" required><br>
+        <label>Student Count:</label>
+        <input type="number" name="std_count" required><br>
+
+        <input type="submit" value="Add Classroom">
+    </form>
+    <h2 id="error"></h2>
+
+    <script>
+        function validateForm() {
+            var countCourses = document.getElementById("count_courses").value;
+            var errorElement = document.getElementById("error");
+
+            if (countCourses <= 0) {
+                errorElement.textContent = "Please enter a valid number of courses.";
+                return false;
+            }
+
+            errorElement.textContent = "";
+            return true;
+        }
+
+        function createInputs(container, count, prefix) {
+            for (var i = 1; i <= count; i++) {
+                var elementDiv = document.createElement("div");
+                elementDiv.innerHTML = `
+                    <label>${prefix} ${i} ID:</label>
+                    <input type="text" name="${prefix}id${i}" required><br>
+
+                    <hr>
+                `;
+                container.appendChild(elementDiv);
+            }
+        }
+
+        document.getElementById("count_courses").addEventListener("input", function() {
+            var countCourses = document.getElementById("count_courses").value;
+            var coursesInputs = document.getElementById("coursesInputs");
+
+            // Clear previous course inputs
+            coursesInputs.innerHTML = "";
+
+            createInputs(coursesInputs, countCourses, "course");
+        });
+    </script>
+
+<div class="p-3 mb-2 bg-dark text-white " >
+           <center> <p> 2023 Student Life Streamline. All rights reserved.</p></center>
+        </div>
+
+</body>
+</html>

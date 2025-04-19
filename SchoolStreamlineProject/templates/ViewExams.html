@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Exam Details</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Add the DataTables CSS link -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
+
+    <!-- Add jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Add the DataTables JS link -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
+
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS file link -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #023047;
+            text-align: center;
+        }
+
+        /* Style for the DataTable */
+        .content-table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:hover {
+            background-color: #219ebc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+<nav class=" navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"  data-bs-theme="dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand" href="#">School Development System</a>
+
+
+
+<div class="mr-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+
+    <h1>Exam Details</h1>
+    <table  id="show" class="content-table">
+        <thead>
+            <tr>
+                <th>Exam ID</th>
+                <th>Course ID</th>
+                <th>Teacher ID</th>
+                <th>Classroom ID</th>
+                <th>Exam Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in data %}
+                <tr>
+                    <td>{{ exam.exam_id }}</td>
+                    <td>{{ exam.course_id }}</td>
+                    <td>{{ exam.teacher_id }}</td>
+                    <td>{{ exam.classroom_id }}</td>
+                    <td>{{ exam.exam_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            $('#show').DataTable();
+        });
+    </script>
+
+<div class="p-3 mb-2 bg-dark text-white" >
+           <center> <p> 2023 Student Life Streamline. All rights reserved.</p></center>
+        </div>
+</body>
+</html>

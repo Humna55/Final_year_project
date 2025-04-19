@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+
+        body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+         }
+
+        .student-details {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #3498db; /* Change background color */
+    color: #fff; /* Change text color */
+    border-radius: 15px; /* Increase border-radius */
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Change box shadow color and increase intensity */
+    animation: fadeIn 1s ease-out;
+    max-width: 600px; /* Limit maximum width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .nav-content {
+            display: flex;
+        }
+
+        a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .add, .update, .view {
+            display: none;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .add a, .update a, .view a {
+            color: #333;
+            padding: 10px;
+            margin: 5px;
+            background-color: #ddd;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .add a:hover, .update a:hover, .view a:hover {
+            background-color: #555;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+<nav class=" navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"  data-bs-theme="dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand" href="#">School Development System</a>
+
+
+
+<div class="mr-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+        <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" onclick="toggleSection('add')">Add</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" onclick="toggleSection('update')">Update</a>
+        </li>
+          <li class="nav-item ">
+          <a class="nav-link"  onclick="toggleSection('view')">View</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+
+<div class="student-details">
+    <p>
+        Welcome to the Student Admission Features section. Here, you can manage various aspects of student admissions,
+        including adding students, teachers, courses, exams, and classrooms. Use the navigation bar to explore the
+        features available in the Add, Update, and View sections. Streamline the student life and make the most of
+        the School Development System.
+    </p>
+</div>
+
+    <div class="content">
+        <!-- Add Section -->
+        <div class="add">
+            <a href="/addstudents">Add Students</a>
+            <a href="/addTeachers">Add Teachers</a>
+            <a href="/addCources">Add Courses</a>
+            <a href="/addExams">Add Exams</a>
+            <a href="/addClassrooms">Add Classrooms</a>
+        </div>
+
+        <!-- Update Section -->
+        <div class="update">
+            <a href="/updateStudent">Update Student</a>
+            <a href="/updateTeacher">Update Teacher</a>
+            <a href="/updateCourse">Update Course</a>
+            <a href="/updateClassroom">Update Classroom</a>
+            <a href="/updateExam">Update Exam</a>
+        </div>
+
+        <!-- View Section -->
+        <div class="view">
+            <a href="/students">View Students</a>
+            <a href="/teachers">View Teachers</a>
+            <a href="/cources">View Courses</a>
+            <a href="/exams">View Exams</a>
+            <a href="/classrooms">View Classrooms</a>
+        </div>
+    </div>
+    {{ error }}
+    <script>
+        function toggleSection(section) {
+            var sections = ['add', 'update', 'view'];
+            sections.forEach(function (s) {
+                document.querySelector('.' + s).style.display = (s === section) ? 'flex' : 'none';
+            });
+        }
+    </script>
+
+<div class="p-3 mb-2 bg-dark text-white fixed-bottom " >
+           <center> <p> 2023 Student Life Streamline. All rights reserved.</p></center>
+        </div>
+</body>
+</html>

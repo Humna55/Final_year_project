@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Teachers</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #023047;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: royalblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightblue;
+        }
+
+        #error {
+            color: #ff0000;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+
+<nav class=" navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"  data-bs-theme="dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <a class="navbar-brand" href="#">School Development System</a>
+
+<div class="mr-0">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav justify-content-end">
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</nav>
+
+
+    <h1>Add Teachers</h1>
+    <form action="/addTeachers" method="POST" onsubmit="return validateForm()">
+        <label>No Of Teachers:</label>
+        <input type="number" name="count" id="count" required><br>
+
+        <div id="teachersInputs"></div>
+
+        <input type="submit" value="Add Teachers">
+    </form>
+    <h2 id="error"></h2>
+
+    <script>
+        function validateForm() {
+            var countTeachers = document.getElementById("count").value;
+            var errorElement = document.getElementById("error");
+
+            if (countTeachers <= 0) {
+                errorElement.textContent = "Please enter a valid number of teachers.";
+                return false;
+            }
+
+            errorElement.textContent = "";
+            return true;
+        }
+
+        document.getElementById("count").addEventListener("input", function() {
+            var countTeachers = document.getElementById("count").value;
+            var teachersInputs = document.getElementById("teachersInputs");
+
+            // Clear previous inputs
+            teachersInputs.innerHTML = "";
+
+            for (var i = 1; i <= countTeachers; i++) {
+                var teacherDiv = document.createElement("div");
+                teacherDiv.innerHTML = `
+                    <label>Teacher ${i} ID:</label>
+                    <input type="text" name="teacherid${i}" required><br>
+                    <label>Teacher ${i} Name:</label>
+                    <input type="text" name="teachername${i}" required><br>
+                    <label>Teacher ${i} Email:</label>
+                    <input type="email" name="teacheremail${i}" required><br>
+                    <label>Teacher ${i} Password:</label>
+                    <input type="password" name="teacherpwd${i}" required><br>
+                    <label>Teacher ${i} Phone No:</label>
+                    <input type="text" name="teacherphone${i}" required><br>
+                    <label>Teacher ${i} Joining Date:</label>
+                    <input type="date" name="teacherjoiningDate${i}" required><br>
+                    <label>Teacher ${i} Salary:</label>
+                    <input type="number" name="teachersalary${i}" step="0.01" required><br>
+                    <!-- Add other fields as needed -->
+                    <hr>
+                `;
+                teachersInputs.appendChild(teacherDiv);
+            }
+        });
+    </script>
+
+<div class="p-3 mb-2 bg-dark text-white" >
+           <center> <p> 2023 Student Life Streamline. All rights reserved.</p></center>
+        </div>
+</body>
+</html>
